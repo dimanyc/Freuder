@@ -25,22 +25,6 @@ FactoryGirl.define do
     
   end
 
-  factory :dup_user do
-
-    username 'DimaNYC'
-    email 'abc@bar.com'
-    uid '123123'
-    provider 'twitter'
-    image_url 'https://pbs.twimg.com/profile_images/558793827993911297/Fo7GFEYR_bigger.jpeg'
-
-    trait :dup_user_2 do 
-      username 'DimaNYC'
-      email 'abc@bar.com'
-      uid '123123'
-      provider 'twitter'
-      image_url 'https://pbs.twimg.com/profile_images/558793827993911297/Fo7GFEYR_bigger.jpeg'
-    end
-  end
-
-
 end
+
+

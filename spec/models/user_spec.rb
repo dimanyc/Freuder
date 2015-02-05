@@ -6,11 +6,12 @@ RSpec.describe User, :type => :model do
   end
 
   it 'cannot_have duplicate uid' do 
-    expect(build(:dup_user)).to_not be_valid
+    expect(User.create(uid:123123)).to_not be_valid
   end
 
-  # it 'cannot_have duplicate username' do 
-  #   expect(build(:dup_user)).to_not be_valid
-  # end
+  it 'cannot_have duplicate username' do 
+    expect(User.create(username:"DimaNYC")).to_not be_valid
+  end  
+
 
 end
