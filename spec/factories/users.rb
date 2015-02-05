@@ -1,23 +1,27 @@
 FactoryGirl.define do
   factory :user do
 
-    username { Faker::Internet.user_name }
-    email { Faker::Internet.disposable_email }
+    username 'DimaNYC'
+    email 'abc@bar.com'
     uid '123123'
     provider 'twitter'
     image_url 'https://pbs.twimg.com/profile_images/558793827993911297/Fo7GFEYR_bigger.jpeg'
 
-    username { Faker::Internet.user_name }
-    email { Faker::Internet.disposable_email }
-    uid '1231312'
-    provider 'twitter'
-    image_url 'https://pbs.twimg.com/profile_images/5593827993911297/Fo7GERRG_bigger.jpeg'
+    trait :user_2 do 
+      username 'FooBar'
+      email 'ab234c@bar.com'
+      uid '123123423'
+      provider 'twitter'
+      image_url 'https://pbs.twimg.com/profile_images/55879234234911293/Fo7GFEYR_bigger.jpeg'
+    end
 
-    username { Faker::Internet.user_name }
-    email { Faker::Internet.disposable_email }'
-    uid '3243212'
-    provider 'twitter'
-    image_url 'https://pbs.twimg.com/profile_images/5234234323911297/Fo4rErRf_bigger.jpeg'    
+      trait :user_3 do
+      username 'Test'
+      email 'test@schmest.com'
+      uid '123321263'
+      provider 'twitter'
+      image_url 'https://pbs.twimg.com/profile_images/53213234231326875/Fo7GFEYR_bigger.jpeg'   
+    end
     
   end
 
@@ -29,12 +33,13 @@ FactoryGirl.define do
     provider 'twitter'
     image_url 'https://pbs.twimg.com/profile_images/558793827993911297/Fo7GFEYR_bigger.jpeg'
 
-    username 'DimaNYC'
-    email 'abc@bar.com'
-    uid '123123'
-    provider 'twitter'
-    image_url 'https://pbs.twimg.com/profile_images/558793827993911297/Fo7GFEYR_bigger.jpeg'
-    
+    trait :dup_user_2 do 
+      username 'DimaNYC'
+      email 'abc@bar.com'
+      uid '123123'
+      provider 'twitter'
+      image_url 'https://pbs.twimg.com/profile_images/558793827993911297/Fo7GFEYR_bigger.jpeg'
+    end
   end
 
 
