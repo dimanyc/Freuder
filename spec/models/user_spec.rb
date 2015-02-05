@@ -1,17 +1,40 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
+ 
+  ### Factory Validation
   it 'has a valid factory' do
     expect(build(:user)).to be_valid
   end
 
-  it 'cannot_have duplicate uid' do 
-    expect(User.create(uid:123123)).to_not be_valid
+  ### 'UID' Validation
+  let (:user) { User.new(uid:123123) }
+
+  context 'when UID already exists' do 
+
+    it 'should not be valid' do
+      expect(user.valid?).to be_falsey 
+    end
+
+    it 'should not save' do 
+      expect(user.save).to be_falsey 
+    end
+
   end
 
-  it 'cannot_have duplicate username' do 
-    expect(User.create(username:"DimaNYC")).to_not be_valid
-  end  
+  ### 'Username' Validation
+  let (:user) { User.new(username:"DimaNYC") }
 
+  context 'when username already exists' do 
+
+    it 'should not be valid' do
+      expect(user.valid?).to be_falsey 
+    end
+
+    it 'should not save' do 
+      expect(user.save).to be_falsey 
+    end
+
+  end
 
 end
