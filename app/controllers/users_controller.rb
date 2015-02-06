@@ -15,7 +15,15 @@ class UsersController < ApplicationController
     end
   end
 
+  ### Read:
+
+  def show
+  end
+
   ### Strong Params:
+
+  private 
+
   def user_params
     params.require(:user).permit(:username,:uid,:provider,:image_url)
   end

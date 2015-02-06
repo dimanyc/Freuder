@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   match 'auth/twitter/callback', to: 'sessions#create', via: [:get, :post]
 
   ### CRUD
-  resources :users
+  resources :users, only:[:show,:create]
 end

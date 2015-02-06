@@ -1,5 +1,5 @@
 Given(/^I am a new user$/) do
-  
+  @user = User.new 
 end
 
 When(/^I got to the home page$/) do
@@ -10,6 +10,6 @@ When(/^I click on "(.*?)" button$/) do |arg1|
   click_link 'Sign in with Twitter'
 end
 
-Then(/^I am able to authenticate myself as a valid user$/) do
-  pending # express the regexp above with the code you wish you had
+Then(/^I'm redirected to my profile page$/) do
+  visit user_path(:id=>123)
 end
