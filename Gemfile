@@ -11,12 +11,16 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
+gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'ffaker'
+  gem 'cucumber-rails',:require => false
+  gem 'dotenv-rails'
 end
 
 group :production do 

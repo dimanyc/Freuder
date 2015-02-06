@@ -8,10 +8,10 @@ RSpec.describe User, :type => :model do
   end
 
   ### 'UID' Validation
-  let (:user) { User.new(uid:123123) }
-
   context 'when UID already exists' do 
 
+    let (:user) { User.new(uid:123123) }
+  
     it 'should not be valid' do
       expect(user.valid?).to be_falsey 
     end
@@ -23,9 +23,9 @@ RSpec.describe User, :type => :model do
   end
 
   ### 'Username' Validation
-  let (:user) { User.new(username:"DimaNYC") }
-
   context 'when username already exists' do 
+    
+    let (:user) { User.new(username:"DimaNYC") }
 
     it 'should not be valid' do
       expect(user.valid?).to be_falsey 
