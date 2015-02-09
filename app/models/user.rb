@@ -1,7 +1,9 @@
 class User < ActiveRecord::Base
 
   ### Validations: 
-  validates :username, :uid, presence: true 
+  validates :username, presence: true, uniqueness: true
+  validates :uid, presence: true, uniqueness: true
+  #:uid, uniqueness: true#{message: "can't be blank", case_sensitive: false }
 
   ### Instsance methods:
   #### Omniauth Hash: 
@@ -16,9 +18,7 @@ class User < ActiveRecord::Base
 
   end
 
-  #### Checking to see if a record already exists in db: 
-  def exists?
-    User.create(from_omniauth(env["omniauth.auth"])) if User.find(session[:user_id]).exists?
-  end
 
 end
+
+
