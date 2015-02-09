@@ -16,11 +16,16 @@ gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'cucumber-rails',:require => false
+  gem 'dotenv-rails'
+end
+
+group :test do 
   gem 'capybara'
   gem 'database_cleaner'
   gem 'ffaker'
-  gem 'cucumber-rails',:require => false
-  gem 'dotenv-rails'
+  gem 'launchy'
+  gem 'selenium-webdriver'
 end
 
 group :production do 

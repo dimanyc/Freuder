@@ -18,6 +18,7 @@ class UsersController < ApplicationController
   ### Read:
 
   def show
+    @user = current_user
   end
 
   ### Strong Params:

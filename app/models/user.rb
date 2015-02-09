@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   validates :username, :uid, presence: true 
 
   ### Instsance methods:
-
+  #### Omniauth Hash: 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
@@ -14,6 +14,11 @@ class User < ActiveRecord::Base
       user.save
     end
 
+  end
+
+  #### Checking to see if a record already exists in db: 
+  def exists?
+    User.create(from_omniauth(env["omniauth.auth"])) if User.find(session[:user_id]).exists?
   end
 
 end
