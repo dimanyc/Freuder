@@ -30,7 +30,6 @@ RSpec.configure do |config|
   # Factory_Girl Init
   config.include FactoryGirl::Syntax::Methods
 
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
 

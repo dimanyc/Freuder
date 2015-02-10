@@ -7,7 +7,7 @@ OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
   :uid => '123545',
   :info => {
     :nickname => "foobaritto"
-    }
+  }
     # etc.
 })
 
