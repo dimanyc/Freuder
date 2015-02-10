@@ -8,7 +8,7 @@ class CreateMessages < ActiveRecord::Migration
       t.string :mentions
       t.text :slipped
       t.references :owner, polymorphic: true, index: true
-
+      t.references :processor, polymorphic: true, index: true
       t.timestamps
     end
   end

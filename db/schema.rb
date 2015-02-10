@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150210000345) do
+ActiveRecord::Schema.define(version: 20150210210744) do
+
+  create_table "filters", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.text     "description"
+    t.text     "slips"
+    t.boolean  "case_sensitive"
+    t.boolean  "keep_slips_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "messages", force: true do |t|
     t.text     "body"
@@ -22,11 +33,14 @@ ActiveRecord::Schema.define(version: 20150210000345) do
     t.text     "slipped"
     t.integer  "owner_id"
     t.string   "owner_type"
+    t.integer  "processor_id"
+    t.string   "processor_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "messages", ["owner_id", "owner_type"], name: "index_messages_on_owner_id_and_owner_type"
+  add_index "messages", ["processor_id", "processor_type"], name: "index_messages_on_processor_id_and_processor_type"
 
   create_table "users", force: true do |t|
     t.string   "username"

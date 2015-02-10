@@ -37,8 +37,28 @@ RSpec.describe Message, :type => :model do
     expect(message.mentions).to eq([])
   end
 
+  ### Associations:
+  context 'is polymophic and' do 
+
+    before(:each) do 
+      @message = build(:message)
+      @filter = build(:filter)
+      @user = build(:user)
+    end
+
+    it 'belongs to Filter' do 
+      @filter.messages << @message
+      expect(@filter.messages.first).to be @message
+    end
+
+    it 'belongs to User' do 
+      @user.messages << @message
+      expect(@user.messages.first).to be @message    
+    end
+  end
+
   ### Tweet: 
-  context 'Tweet' do 
+  context 'as a Tweet' do 
   
     before(:each) do 
       @message = build(:message)

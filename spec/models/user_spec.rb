@@ -39,4 +39,26 @@ RSpec.describe User, :type => :model do
     user.valid?
     expect(user.errors[:username]).to include("has already been taken")
   end
+
+  ### Associations:
+
+  context 'can have' do
+    
+    before(:each) do 
+      @user = build(:user)
+      @message = build(:message)
+      @filter = build(:filter)
+    end
+
+    it 'many messages' do 
+      @user.messages << @message 
+      expect(@user.messages.first).to be @message
+    end
+
+    it 'many filters' do 
+      @user.filters << @filter
+      expect(@user.filters.first).to be @filter
+    end
+
+  end
 end

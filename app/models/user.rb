@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
 
+  ### Active Relations:
+  has_many :filters
+  has_many :messages, as: :owner
+
   ### Validations: 
   validates :username, presence: true, uniqueness: true
   validates :uid, presence: true, uniqueness: true
