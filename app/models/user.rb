@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates :uid, presence: true, uniqueness: true
 
-  ### Instsance methods:
+  ### Methods:
   #### OAuth Authentication: 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
     end
 
   end
-
 
 end
 
