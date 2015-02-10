@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :messages
+
   root 'home#index', as: 'home', layout: 'false'
   match 'auth/twitter/callback', to: 'sessions#create', via: [:get, :post]
 

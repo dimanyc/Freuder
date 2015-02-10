@@ -7,7 +7,8 @@ RSpec.describe User, :type => :model do
     expect(build(:user)).to be_valid
   end
 
-  ### Presence:
+  ### Validations: 
+  #### Presence:
   it "is valid with UID and username" do 
     expect(build(:user)).to be_valid
   end
@@ -24,7 +25,7 @@ RSpec.describe User, :type => :model do
     expect(user.errors[:username]).to include("can't be blank")
   end
 
-  ### Uniqueness:
+  #### Uniqueness:
   it "is invalid with a duplicate UID" do 
     create(:user, uid:12233)
     user = build(:user, uid: 12233)
