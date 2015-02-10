@@ -2,6 +2,28 @@ require 'rails_helper'
 
 RSpec.describe Message, :type => :model do
   
+  context 'standard Tweet' do 
+  
+  before(:each) do 
+    @message = build(:message)
+  end
+
+  ### Columns to Array initiation
+    it 'has Array data types in Slipped, Hashtags and Mentions' do 
+      expect(@message.slipped).to eq([])
+      expect(@message.hashtags).to eq([])
+      expect(@message.mentions).to eq([])
+    end
+
+  ### Factory
+    it 'has a valid factory' do
+      expect(@message).to be_valid
+    end
+
+    it 'accepts array appending to Slipped, Hashtags and Mentions' do 
+      expect(@message.slipped << "foobarrito").to eq(["foobarrito"])
+    end
+  end
   ### Validations:
 
   #### Presence:

@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20150210000345) do
   create_table "messages", force: true do |t|
     t.text     "body"
     t.string   "author"
-    t.text     "hashtags"
+    t.string   "hashtags"
     t.string   "author_image_url"
     t.string   "mentions"
     t.text     "slipped"

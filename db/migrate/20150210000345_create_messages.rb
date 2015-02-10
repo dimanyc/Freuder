@@ -3,7 +3,7 @@ class CreateMessages < ActiveRecord::Migration
     create_table :messages do |t|
       t.text :body
       t.string :author
-      t.text :hashtags
+      t.string :hashtags
       t.string :author_image_url
       t.string :mentions
       t.text :slipped
