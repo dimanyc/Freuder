@@ -40,12 +40,14 @@ RSpec.describe Message, :type => :model do
   ### Tweet: 
   context 'Tweet' do 
   
-    before(:example) do 
+    before(:each) do 
       @message = build(:message)
     end
 
     it 'accepts array data appending in Slipped, Hashtags and Mentions columns / objects' do 
       expect(@message.slipped << "foobarrito").to eq(["foobarrito"])
+      expect(@message.hashtags << "#foobarrito").to eq(["#foobarrito"])
+      expect(@message.mentions << "@foobarrito").to eq(["@foobarrito"])
     end
 
     #### Body length:

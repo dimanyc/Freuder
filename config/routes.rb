@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :filters
+
   resources :messages
 
   root 'home#index', as: 'home', layout: 'false'
