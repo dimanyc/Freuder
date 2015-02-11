@@ -41,7 +41,6 @@ RSpec.describe User, :type => :model do
   end
 
   ### Associations:
-
   context 'can have' do
     
     before(:each) do 
