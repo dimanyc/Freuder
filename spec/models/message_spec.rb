@@ -38,7 +38,7 @@ RSpec.describe Message, :type => :model do
   end
 
   ### Associations:
-  context 'is polymophic and' do 
+  context 'is polymophic and can' do 
 
     before(:each) do 
       @message = build(:message)
@@ -46,12 +46,12 @@ RSpec.describe Message, :type => :model do
       @user = build(:user)
     end
 
-    it 'belongs to Filter' do 
+    it 'belong to a Filter' do 
       @filter.messages << @message
       expect(@filter.messages.first).to be @message
     end
 
-    it 'belongs to User' do 
+    it 'belong to a User' do 
       @user.messages << @message
       expect(@user.messages.first).to be @message    
     end

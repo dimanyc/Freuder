@@ -1,7 +1,7 @@
 require 'spec_helper'
 #require 'omni_auth_test_helper'
 
-describe "GET '/auth/twitter/callback'" do 
+describe "OAuth authenticaion via GET '/auth/twitter/callback' works" do 
 
   before(:each) do
     valid_twitter_login_setup
