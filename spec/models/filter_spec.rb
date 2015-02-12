@@ -21,7 +21,7 @@ RSpec.describe Filter, :type => :model do
   end
 
   #### "Slips" to Array initiation:
-  it 'accepts new Slips array' do 
+  it 'accepts new Slips as Array' do 
     filter = build(:filter)
     new_slips = ["foo","bar","baz"]
     filter.slips << new_slips

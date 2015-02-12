@@ -1,5 +1,4 @@
 require 'spec_helper'
-#require 'omni_auth_test_helper'
 
 describe "OAuth authenticaion via GET '/auth/twitter/callback' works" do 
 
