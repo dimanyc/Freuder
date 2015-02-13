@@ -20,4 +20,8 @@ describe "OAuth authenticaion via GET '/auth/twitter/callback' works" do
     expect(User.last.image_url).to eq("http://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png")
   end
 
+  it 'should parse the username' do
+    expect(User.last.username).to eq("foobaritto")
+  end
+
 end
