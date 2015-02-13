@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   ### Read:
   def show
-    @image = current_user.image_url.gsub!("_normal","")
+    @image = @user.image_url.gsub!("_normal","")
   end
 
 

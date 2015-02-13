@@ -1,3 +1,229 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$black: black;
+$grey: lightslategray;
+$greybg: whitesmoke;
+$highlight:crimson;
+
+// Success coloring
+$greentext: #fff;
+$greenbg: #5cb85c;
+$greenborder: #4cae4c;  
+
+// Warning coloring
+$redtext: #fff;
+$redbg: #d9534f;
+$redborder: #d43f3a;
+
+// Info coloring
+$lightbluetext: #fff;
+$lightbluebg: #5bc0de;
+$lightblueborder: #46b8da;
+
+
+
+/*Globals*/
+
+html
+  {
+    position: relative;
+    min-height: 100%;
+    overflow-y: scroll; 
+
+  }
+
+body 
+  {
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-shadow: rgba(0,0,0,.01) 0 0 1px;
+    text-shadow: rgba(0,0,0,.01) 0 0 1px;
+    font-size:17px!important;
+    
+    margin-bottom:60px;/*for stick footer*/
+
+    h1,h2,h3,h5,h6
+      {
+
+        color:$black;
+        text-transform: uppercase;
+        font-weight: 900;
+        
+      }
+    b,h4{font-weight:900;}
+    
+    h4{font-size: 17px !important;}
+
+
+  }
+a
+  {
+    text-decoration:none;
+    color:$black;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+  }
+
+a:hover, a:focus
+  {
+    color:$highlight;
+    text-decoration: none!important;
+  }
+.glyphicon {font-size:.8em;}
+
+.badge.green
+  {
+      color: $greentext;
+    background-color: $greenbg;
+    border-color: $greenborder;
+  }
+.badge.red
+  {
+    color: $redtext;
+    background-color: $redbg;
+    border-color: $redborder;
+  }
+.badge.lightblue
+  {
+    color: $lightbluetext;
+    background-color: $lightbluebg;
+    border-color: $lightblueborder;
+  }
+
+/*Header*/
+header
+  { 
+    nav
+    {
+      font-size:14px;
+        p.navbar-text, p.navbar-text a 
+          {
+            color:$greybg!important;
+          }
+    }
+  }
+
+a.navbar-brand
+  {
+    text-transform: uppercase;font-weight:900;color:$greybg!important;
+      img
+      {
+        float:left;
+        margin-top: -10px;
+        margin-right: 14px;
+      }
+  }
+.profile-pic{margin-top:-15px;margin-bottom:-14px;width:49px;height:49px;}
+
+.author-pic{margin-top:-15px;margin-bottom:-14px;width:35px; height:35px;}
+
+/*Home*/
+
+section#homepageintro 
+        {
+          position:relative;
+          
+          div
+            {
+              
+                position:absolute;
+                top:50%;
+                height:50%;
+                margin-top:10%;;
+
+              h1
+                {
+                  font-family: "Times New Roman", serif;
+                  font-size:5em;
+                  -webkit-text-shadow: rgba(147,149,152,1) 0 0 3px;
+                  text-shadow: rgba(147,149,152,1) 0 0 3px;
+                  
+                }
+            }
+        }
+
+/*Profile*/
+
+section#profile-image,section#profile-messages,section#new-filter{margin-top: 72px;}
+section#profile-image 
+          {
+            margin-top:118px;
+            img
+            {
+              border:1px;
+              box-shadow: 0 1px 1px rgba(0,0,0,.05);
+              border: 1px solid gainsboro;
+              border-radius: 4px;
+            }
+          }
+section#homepageintro 
+  {
+
+  }         
+.list-grop-item .badge {line-height:1;}
+
+/*Tabbed Nav*/
+ul.right-to-left
+  {
+     margin-top: 30px; 
+     li
+      {
+        float:right;
+        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+      }
+  }
+
+/*Notifications*/ 
+
+.field_with_errors
+  {
+    color: $highlight;
+    input[type=text]
+      {
+        border-color: $highlight;
+      }
+
+  }
+.flash-alerts
+  {
+    z-index:9999;
+    position:absolute;
+    left:50%;
+  }
+.alert
+  {
+    position:relative;
+    top:20px;
+    left: -50%;
+    display: block;
+    width:100%;
+    border-radius: 0px;
+  }
+
+.list-group-item>.badge{float:none!important;}
+.tab-pane span.badge a{color:white;}  
+a span.list-group-addon{display:inline;font-weight: normal;color:white;}
+section#user-tags 
+  {
+    #filter-form-toggle
+    {
+      display:none;
+    }
+  }
+
+  
+/*Debugger*/
+div.debugger
+  { 
+    position: fixed;
+    bottom:15px;
+    right:15px;
+    background-color:rgba(128,128,128,.2);
+    color:$black;
+    padding:15px;
+    display:none; 
+  }

@@ -3,7 +3,7 @@
 <div class="col-xl-3 col-l-3 col-md-3 col-sm-6 col-xs-6">
 <section id="profile_image">
   <div class="thumbnail">
-    <%= image_tag(@image) %>
+    <%= image_tag(@image, alt: "#{current_user.username}") %>
     <div class="caption">
       <h3><span class="glyphicon glyphicon-user" aria-hidden="true"> </span> <%= current_user.username %></h3>
     </div><!--end_.caption-->
