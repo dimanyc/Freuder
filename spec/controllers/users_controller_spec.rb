@@ -4,10 +4,6 @@ RSpec.describe UsersController, :type => :controller do
 
   describe 'GET #show' do
 
-  before(:each) do 
-    
-  end
-
     it 'assigns the requested id to @user' do
       user = create(:user)
       get :show, id: user 
@@ -17,7 +13,7 @@ RSpec.describe UsersController, :type => :controller do
 
     it 'renders the :show template' do 
       user = create(:user)
-    get :show, id: user 
+      get :show, id: user 
       expect(response).to render_template :show 
     end
 

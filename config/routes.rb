@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   resources :filters
+  resources :sessions, only: [:destroy], as: :logout
 
   resources :messages
 

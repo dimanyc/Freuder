@@ -1,20 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>F4</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+<title>F2</title>
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
 </head>
-
 <body>
+
+<!--Alerts-->
+<%= render 'layouts/alerts' %>
+
+<!--Header-->
+<header>
+
+  <!--Main Nav-->
+
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        
+        <%= link_to home_path, class: "navbar-brand" do %>
+        <%= image_tag('freuder-logo.png',class: "img-responsive img-circle",size: "40")%> Freuder
+        <% end %>
+      </div>
+
+      <!--Nav Profle-->
+
+      <p class="navbar-text navbar-right hidden-xs">
+        <% unless session[:user_id] == nil && params[:controller] == 'home' && params[:action] == 'index'  %>
+        <%= link_to logout_path(session[:user_id]), method: "delete" do %> 
+        Hello, <%=current_user.username%>
+        <%=image_tag(@image, class: 'profile-pic') %>
+        <% end %>
+        <% end %>
+      </p>
+
+      <!--Nav Options -->
+
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile<span class="sr-only">(current)</span></a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Settings</a></li>
+        </ul>
+
+      </div><!--/.nav-collapse -->
+
+    </div>
+  </nav>
+</header>
+
 
 <!--Main-->
 <div class="container">
-  <div class="row">
-<%= yield %>
-  </div><!--end_row-->
+ <div class="row">
+   
+
+   <%= render 'layouts/login' %>
+
+   
+   
+   <%= yield %>
+
+
+   <!--Footer-->  
+   <footer>
+   </footer>
+
+ </div><!--end_row-->
 </div><!--end_.container-->
+
+
+
 
 </body>
 </html>

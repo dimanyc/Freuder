@@ -1,0 +1,3 @@
+<% unless session[:user_id] == nil && params[:controller] == 'home' && params[:action] == 'index'  %>
+  <p><%= link_to "Logout", logout_path(session[:user_id]), method: "delete" %> </p>
+<% end %>
