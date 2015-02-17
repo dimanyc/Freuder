@@ -1,13 +1,12 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-
-  ### Create:
-  def create
-  end
+  before_action :authenticate
+  before_action :set_user, only: [:show]
 
   ### Read:
   def show
-
+ 
+      #flash[:notice] = "Hi, #{@user.username}"
+      #@user = User.find(params[:id])
       @image = @user.image_url.gsub!("_normal","")
       @messages = @user.messages.order(:created_at)
       @message = Message.new 
@@ -15,10 +14,17 @@ class UsersController < ApplicationController
       @filters = @user.filters
       @filter = Filter.new
 
+      
   end
 
 
-  private 
+  private
+
+  # def authenticate(user)
+  #   if user.id == session[:user_id]
+  #     return true
+  #   end
+  # end  
 
   def set_user
     @user = User.find(params[:id])

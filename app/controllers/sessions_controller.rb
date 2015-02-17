@@ -8,4 +8,10 @@ class SessionsController < ApplicationController
     flash[:notice] = 'Signed In!'
   end
 
+  def destroy
+    session[:user_id] = nil
+    redirect_to home_path
+    flash[:notice] = "Logged Out!"
+  end
+
 end

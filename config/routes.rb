@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :filters
+  resources :filters, only: [:new,:create,:index,:destroy]
   resources :sessions, only: [:destroy], as: :logout
 
   resources :messages
@@ -9,6 +9,6 @@ Rails.application.routes.draw do
   match 'auth/twitter/callback', to: 'sessions#create', via: [:get, :post]
 
   ### CRUD
-  resources :users, only:[:show,:create]
+  resources :users, only: [:show, :create]
   
 end
