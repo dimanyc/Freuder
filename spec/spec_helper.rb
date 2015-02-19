@@ -4,6 +4,9 @@ require 'capybara/rspec'
 ### OAuth Test helper:
 require 'helpers/omni_auth_test_helper'
 
+### Custom Matchers:
+require 'support/matchers/require_login'
+
 RSpec.configure do |config|
 
   #### Initiating OAuth auth mocking helper methods: 
