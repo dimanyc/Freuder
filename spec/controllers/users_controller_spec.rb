@@ -76,17 +76,6 @@ RSpec.describe UsersController, :type => :controller do
       
     end
 
-    # context 'when not authenticated' do 
-
-    #   it 'redirects to home path' do 
-    #     get :show, id: @user.id
-    #     #session[:user_id] = nil
-    #     expect(response).to redirect_to home_path
-    #   end
-
-    # end
-
-
   end
 
 end

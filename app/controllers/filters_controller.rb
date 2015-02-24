@@ -8,7 +8,7 @@ class FiltersController < ApplicationController
   
   ### Read: 
   def index
-    @filters = current.user.filters
+    @filters = current_user.filters
   end 
 
   def show
