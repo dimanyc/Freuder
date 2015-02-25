@@ -3,12 +3,25 @@ class FiltersController < ApplicationController
   
   ### Create
   def create
-    @filter = Filter.new(filter_params)
+    @filter = current_user.filters.create(filter_params)
+    respond_to do |format|
+    if @filter.save
+        
+          format.html { redirect_to user_path(current_user), notice: "Filter #{filter.name} has been created!" }
+          format.json { render json: @filter, status: :created, location: current_user.filters }
+
+      else 
+        
+          format.html { render :new, alert: "Problem adding your filter. Try again, or contact me: @dimanyc" }
+          format.json { render json: @filter.errors, status: :unprocessable_entity }
+        
+      end
+    end
   end
   
   ### Read: 
   def index
-    @filters = current_user.filters
+    #@filters = current_user.filters
   end 
 
   def show
@@ -17,7 +30,7 @@ class FiltersController < ApplicationController
   private
 
   def set_filter
-    @filter = params[:id]
+    #@filter = params[:id]
   end
 
   def filter_params
