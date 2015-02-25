@@ -1,0 +1,44 @@
+  <br/>
+  <div class="well">
+    <h4><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Creating New Filter:</h4>
+
+    <div class="panel panel-default">
+      <div class="panel-body"> 
+        <%= form_for(@filter, remote: true) do |f| %>
+        <% if @filter.errors.any? %>
+          <div id="error_explanation">
+          <h2><%= pluralize(@filter.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+            <ul>
+            <% @filter.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :name,"Name:" %><br/>
+          <%= f.text_field :name, class: "form-control", placeholder: 'i.e SEO Filter' %>
+        </div><!--end_.form-group-->
+
+        <div class="form-group">
+          <%= f.label :slips,"Slips (comma-separated):" %><br/>
+          <%= f.text_area :slips, class: "form-control", placeholder: "i.e. slip1, slip2, slip3" %> 
+        </div><!--end_.form-group-->
+
+        <div class="form-group">
+        <%= f.label :description,"Description:" %><br/>
+        <%= f.text_area :description, class: "form-control counted", name: "filter", placeholder: "Describe your filter here (optional)", rows:"4", style: "margin-bottom:10px;" %>    
+        </div><!--end_.form-group-->
+
+        <div class="form-group">
+        <%= f.submit class: "btn btn-success", id: "create-new-filter" do %>
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Create Tag
+        <% end %>
+        </div><!--end_.form-group-->
+        
+        <%end%>
+      </div>
+    </div>
+  </div><!--end_well-->

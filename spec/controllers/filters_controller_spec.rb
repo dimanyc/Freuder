@@ -10,13 +10,7 @@ RSpec.describe FiltersController, :type => :controller do
 			@filter = create(:filter)
 		end 
 
-		# it 'requires authentication' do 
-		# 	post :create
-  #     expect(@user.filters.count).to eq(1)
-		# end
-
-
-		it "saves the new contact in the database" do
+		it "saves the new filter to db" do
       expect{
         post :create, filter: attributes_for(:filter)
       }.to change(@user.filters, :count).by(1)

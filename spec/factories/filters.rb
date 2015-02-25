@@ -7,8 +7,8 @@ FactoryGirl.define do
     case_sensitive false
     keep_slips_order false
 
-    trait :filter_without_slips do
-      slips "foobar_array"
+    factory :filter_without_slips do
+      slips nil
     end
 
   end

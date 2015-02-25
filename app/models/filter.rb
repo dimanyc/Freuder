@@ -5,7 +5,7 @@ class Filter < ActiveRecord::Base
   has_many :messages, as: :processor 
 
   ### Set columns to Array data type: 
-  serialize :slips, Array  
+  #serialize :slips, Array  
 
   ### Validations:
   validates :name, :slips, presence: true

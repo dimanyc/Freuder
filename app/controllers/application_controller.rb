@@ -1,10 +1,9 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
+
   protect_from_forgery with: :exception
 
   def authenticate
-    redirect_to home_path, alert: 'Please log in first' if current_user.nil?
+    redirect_to home_path, alert: 'Nnnnope...Sign-In First!' if current_user.nil?
   end
  
   private 
