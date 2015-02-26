@@ -4,17 +4,25 @@ RSpec.describe FiltersController, :type => :controller do
 
 	describe 'POST #create' do
 
-		before(:each) do
-			@user = create(:user)
-			session[:user_id] = @user.id
-			@filter = create(:filter)
-		end 
+    before(:each) do 
+      @filter = attributes_for(:filter)
+      @user = attributes_for(:user)
+    end
 
-		it "saves the new filter to db" do
-      expect{
-        post :create, filter: attributes_for(:filter)
-      }.to change(@user.filters, :count).by(1)
-		end
+      context 'with valid attributes' do 
+        
+        it 'saves the new filter to db' do 
+          expect{
+            post :create, filter: attributes_for(:filter)
+          }.to change(Filter, :count).by(1)
+        end
+
+        it 'redirects to user_path' do 
+          post :create, filter: attributes_for(:filter, user_attributes: @user)
+            expect(response).to redirect_to user_path
+        end
+
+      end
 
 	end
 

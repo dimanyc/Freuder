@@ -3,9 +3,11 @@ FactoryGirl.define do
     sequence(:user_id) { |id| id } 
     name { Faker::Lorem.word }
     description { Faker::Lorem.paragraph }
-    sequence(:slips) { |number| ["random#{number}", "set#{number}", "of#{number}", "slips#{number}"] }
+    sequence(:slips) { |number| "random#{number}, set#{number}, of#{number}, slips#{number}" }
     case_sensitive false
     keep_slips_order false
+
+    association :user, factory: :user, strategy: :build 
 
     factory :filter_without_slips do
       slips nil

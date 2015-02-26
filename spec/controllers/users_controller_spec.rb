@@ -55,6 +55,15 @@ RSpec.describe UsersController, :type => :controller do
 
       context "loads User's filters" do 
 
+        # before(:each) do
+        #   @filters = @user.filters
+        #   @filter = create(:filter, user: @user)
+        # end
+
+        #   it 'and creates @filters instance variable' do 
+        #     expect(@filters).to_not eq nil
+        #   end
+
         before(:each) do 
           @filters = @user.filters
           @filter = create(:filter, user: @user) 

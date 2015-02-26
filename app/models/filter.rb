@@ -5,9 +5,10 @@ class Filter < ActiveRecord::Base
   has_many :messages, as: :processor
  
   ### Serialize to array:
-  serialize :slips, Array if changed?
+  def split_to_array(string)
+    string.split(',').map(&:strip)
+  end  
   
-
   ### Validations:
   validates :name, :slips, presence: true
 

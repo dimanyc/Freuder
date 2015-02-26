@@ -20,13 +20,12 @@ RSpec.describe Filter, :type => :model do
     expect(filter.errors[:slips]).to include("can't be blank")
   end
 
-  #### "Slips" to Array initiation:
-  it 'accepts new Slips as Array' do 
+  #### ".split_to_array method works:
+  it 'is able to change Slips object to Array data type' do 
     filter = build(:filter)
-    new_slips = ["foo","bar","baz"]
-    filter.slips << new_slips
-    expect(filter.slips).to include new_slips
+    expect(filter.split_to_array(filter.slips)).to be_an_instance_of(Array)
   end
+
 
   ### Associations:
   context 'is associated with other Classes and' do 
