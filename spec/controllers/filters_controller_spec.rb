@@ -5,21 +5,20 @@ RSpec.describe FiltersController, :type => :controller do
 	describe 'POST #create' do
 
     before(:each) do 
-      @filter = attributes_for(:filter)
-      @user = attributes_for(:user)
+      @user = create(:user, id: 1)
     end
 
       context 'with valid attributes' do 
-        
-        it 'saves the new filter to db' do 
+      
+        it "creates new Filter" do
           expect{
-            post :create, filter: attributes_for(:filter)
+          post :create, user_id: 1, filter: attributes_for(:filter)
           }.to change(Filter, :count).by(1)
         end
 
-        it 'redirects to user_path' do 
-          post :create, filter: attributes_for(:filter, user_attributes: @user)
-            expect(response).to redirect_to user_path
+        it "redirects_to user_path" do 
+          post :create, user_id: 1, filter: attributes_for(:filter)
+          expect(response).to redirect_to user_path(@user)
         end
 
       end

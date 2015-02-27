@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   
   resources :users, only: [:show, :create] do 
-    resources :filters, only: [:new,:create]
+    resources :filters, only: [:new, :create, :destroy]
+      # member do 
+      #   match 'create_filter', via: :post
+      # end
   end
 
   resources :filters, only: [:destroy]

@@ -4,7 +4,8 @@
 
     <div class="panel panel-default">
       <div class="panel-body"> 
-        <%= form_for ([@user, @filter]), as: :user_filter do |f| %>
+        <%#= form_for ([@user, @filter]), as: :user_filter do |f| %>
+        <%= form_for ([@user, @filter]) do |f| %>
         <% if @filter.errors.any? %>
           <div id="error_explanation">
           <h2><%= pluralize(@filter.errors.count, "error") %> prohibited this message from being saved:</h2>
@@ -18,7 +19,7 @@
         <% end %>
 
         <div class="form-group">
-          <%= f.label :name,"Name:" %><br/>
+          <%= f.label :name, "Name:" %><br/>
           <%= f.text_field :name, class: "form-control", placeholder: 'i.e SEO Filter' %>
         </div><!--end_.form-group-->
 
@@ -29,13 +30,17 @@
 
         <div class="form-group">
         <%= f.label :description,"Description:" %><br/>
-        <%= f.text_area :description, class: "form-control counted", name: "filter", placeholder: "Describe your filter here (optional)", rows:"4", style: "margin-bottom:10px;" %>    
+        <%= f.text_area :description, class: "form-control counted", placeholder: "Describe your filter here (optional)", rows:"4", style: "margin-bottom:10px;" %>    
         </div><!--end_.form-group-->
 
         <div class="form-group">
-        <%= f.submit class: "btn btn-success", id: "create-new-filter" do %>
+        <%#= link_to user_filters_path(user_id: @user.id), method: :post do %>
+        <%= f.submit class: "btn btn-success", id: "create-new-filter", name: "create_filter" do %>
           <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Create Tag
         <% end %>
+        <%#= f.submit class: "btn btn-success", id: "create-new-filter", name: "create_filter" do %>
+          <!-- <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Create Tag -->
+        <%# end %>
         </div><!--end_.form-group-->
         
         <%end%>

@@ -1,4 +1,5 @@
 class FiltersController < ApplicationController
+  before_action :set_user, only: [:create,:destroy]
 
   ### Create
   def new
@@ -6,23 +7,28 @@ class FiltersController < ApplicationController
   end
 
   def create
-    @filter = current_user.filters.new(filter_params)
+    @filter = @user.filters.new(filter_params)
 
     if @filter.save!
       @filter.split_to_array(@filter.slips)
-      redirect_to user_path(current_user)
+      redirect_to user_path(@user)
       flash[:notice] = "Filter #{@filter.name} has been created"
     else
-      redirect_to user_path(current_user)
+      redirect_to user_path(@user)
       flash[:alert] = "Problem creating this filter"
     end
 
   end
-
+ 
   private
 
+  def set_user
+    @user = User.find(params[:user_id])
+  end
+
   def filter_params
-    params.require(:user_filter).permit(:name,:description,:slips,:user_id,:case_sensitive,:keep_slips_order)
+    params.fetch(:filter, {}).permit(:name,:description,:slips,:user_id,:case_sensitive,:keep_slips_order)
   end
 
 end
+
