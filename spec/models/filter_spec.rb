@@ -20,6 +20,13 @@ RSpec.describe Filter, :type => :model do
     expect(filter.errors[:slips]).to include("can't be blank")
   end
 
+  it 'is invalid with dupe slips' do 
+    create(:filter, slips: "foo,bar,rito")
+    filter = build(:filter, slips: "foo,bar,rito")
+    filter.valid?
+    expect(filter.errors[:slips]).to include("has already been taken")
+  end
+
   #### ".split_to_array method works:
   it 'is able to change Slips object to Array data type' do 
     filter = build(:filter)

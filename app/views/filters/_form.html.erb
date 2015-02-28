@@ -1,11 +1,11 @@
   <br/>
   <div class="well">
-    <h4><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> Creating New Filter:</h4>
+    <h4><span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Creating New Filter:</h4>
 
     <div class="panel panel-default">
       <div class="panel-body"> 
         <%#= form_for ([@user, @filter]), as: :user_filter do |f| %>
-        <%= form_for ([@user, @filter]) do |f| %>
+        <%= form_for ([@user, @filter]), remote: true do |f| %>
         <% if @filter.errors.any? %>
           <div id="error_explanation">
           <h2><%= pluralize(@filter.errors.count, "error") %> prohibited this message from being saved:</h2>
@@ -34,13 +34,9 @@
         </div><!--end_.form-group-->
 
         <div class="form-group">
-        <%#= link_to user_filters_path(user_id: @user.id), method: :post do %>
         <%= f.submit class: "btn btn-success", id: "create-new-filter", name: "create_filter" do %>
-          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Create Tag
+          <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Create filter
         <% end %>
-        <%#= f.submit class: "btn btn-success", id: "create-new-filter", name: "create_filter" do %>
-          <!-- <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Create Tag -->
-        <%# end %>
         </div><!--end_.form-group-->
         
         <%end%>

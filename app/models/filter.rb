@@ -11,5 +11,6 @@ class Filter < ActiveRecord::Base
   
   ### Validations:
   validates :name, :slips, presence: true
+  validates_uniqueness_of :slips 
 
 end

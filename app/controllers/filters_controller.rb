@@ -9,13 +9,27 @@ class FiltersController < ApplicationController
   def create
     @filter = @user.filters.new(filter_params)
 
-    if @filter.save!
-      @filter.split_to_array(@filter.slips)
-      redirect_to user_path(@user)
-      flash[:notice] = "Filter #{@filter.name} has been created"
+    respond_to do |format|
+      if @filter.save
+        format.html { redirect_to @user, notice: "Filter #{@filter.name} has been created" }
+        format.json { render json: @filter, status: :created, location: @filters }
+        format.js {}
+      else
+        format.html { render :new, alert: "Problem adding your filter. Please try again or contact me directly: @dimanyc" }
+        format.json { render json: @filter.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
+  ### Destroy 
+  def destroy 
+    @filter = Filter.find(params[:id])
+
+    if @filter.destroy
+      flash[:notice] = "Filter removed"
     else
-      redirect_to user_path(@user)
-      flash[:alert] = "Problem creating this filter"
+      flash[:alert] = "Problem removing #{@filter.name}"
     end
 
   end

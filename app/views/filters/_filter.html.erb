@@ -1,6 +1,6 @@
-<li class="list-group-item clearfix user-tag"  id="<%= dom_id(filter) %>">
+<li class="list-group-item clearfix user-filter"  id="<%= dom_id(filter) %>">
   <span class="pull-left">
-    <span class="list-group-addon glyphicon glyphicon-tag"></span> <%= filter.name.capitalize %>
+    <span class="list-group-addon glyphicon glyphicon-filter"></span> <%= filter.name.capitalize %>
   </span>
   <span class="pull-right">
     <% if filter.messages.uniq.count >= 1 %>
@@ -8,8 +8,8 @@
       <span class="pull-left">&nbsp;</span>
     <% end %>
   </span>
-  <span class="pull-right delete-tag"><!-- use JS to hide on mouseout -->
-    <%= link_to filter_path(filter), method: :delete, data:{confirm: "Are You Sure you want to delete tag \"#{filter.name}\"?", disable_with: "Deleting..."}, remote: true, id: "user-tag-delete" do %>
+  <span class="pull-right delete-filter"><!-- use JS to hide on mouseout -->
+    <%= link_to user_filter_path(id: filter.id, user_id: current_user.id), method: :delete, data:{confirm: "Are You Sure you want to delete filter \"#{filter.name}\"?", disable_with: "Deleting..."}, remote: true, id: "user-filter-delete" do %>
       <b class="badge red"><span class="list-group-addon glyphicon glyphicon-remove"></span></b><%end%>
   </span>
 </li>
