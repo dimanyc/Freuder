@@ -9,7 +9,7 @@
       </div><!--end_.caption-->
     </div><!--end_.thumbnail-->
   </section> 
-
+ 
   <!--Filters-->
   <section id="user-filters">
     <h4>Your Filters:</h4>
@@ -26,3 +26,69 @@
 
   </section><!--end_user-filters--> 
 </div><!--end_.col-md-3-->
+
+<div class="col-md-9 col-lg-9 col-xl-9 col-sm-6 col-xs-6">
+  <section id="profile-messages">
+    <!--Pane Nav Tabs-->
+    <ul class="nav nav-tabs right-to-left">
+
+      <li class="active"><a href="#all-messages" data-toggle="tab"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>&nbsp; All Messages <span class="badge lightblue"><%=@messages.count%></span></a></li>
+
+      <li><a href="#filtered-messages" data-toggle="tab"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp; Filtered Messages <span class="badge lightblue"><%=@filtered_messages.count%></span></a></li>
+
+      <li><a href="#new-tweet" data-toggle="tab"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp; New Tweet</a></li>    
+
+    </ul>
+
+    <!--Panes-->
+
+    <!--All Messages-->
+    <div class="tab-content">
+      <div class="tab-pane fade active in" id="all-messages">
+        <div class="panel-heading">
+        
+          <b>All Messages:</b>
+      
+          <div class="pull-right">
+            <span class="badge green">
+              <%=link_to home_path, id: "refresh-feed" do %> <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh <% end %>
+            </span>
+            <span class="badge red">
+             <%=link_to home_path do %> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete All <% end %>
+            </span>
+          </div><!--end_.pull-right-->
+        </div><!--end_.panel-heading-->
+        <%= render 'all_messages' %>
+
+      </div><!--end_tab-pane-->
+
+
+    <!--Filtered Messages-->
+      <div class="tab-pane fade" id="filtered-messages">
+            <div class="panel-heading">
+        <b>Filtered Messages:</b>
+          <div class="pull-right">
+            <span class="badge green">
+            <%=link_to home_path do %> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter Messages <% end %>
+            </span><!--end_.badge-->
+          
+          </div><!--end_pull-right-->
+        </div><!--end_.panel-heading-->
+         
+        
+        <%= render 'filtered_messages' %>
+        
+      </div><!--end_tab-pane-->
+
+      <div class="tab-pane fade" id="new-tweet">
+        <h4>New Tweet:</h4>
+
+        <%= render 'messages/form' %>
+
+      </div><!--end_tab-pane-->
+            
+    </div><!-- tab content -->
+
+
+  </section><!--end_#profile-messages-->
+</div><!--end_col-md-9-->

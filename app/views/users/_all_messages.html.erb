@@ -1,0 +1,34 @@
+<div id="all-messages">
+<% if @messages == [] %>
+  <div class="well">You don't have any saved messages yet. If this is your first time here, please click on Refresh button below. </div>
+
+  <%= link_to home_path, class: "btn btn-primary" do %>
+      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh
+  <% end %> 
+
+<% else %>
+
+  <% @messages.each do |message| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+    by <b><%=message.author%></b>
+      <div class="pull-right">
+      <%= image_tag(message.author_image_url, class: "author-pic img-circle") %>
+      </div>
+
+    </div><!--end_.panel-heading-->
+    <div class="panel-body">
+      <%=message.body%>
+    </div><!--end_panel-body-->
+  </div><!--end_.panel panel-default-->
+  <% end %>
+    
+  
+  <%= link_to refresh_path, class: "btn btn-info" do %>
+      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh
+  <% end %> 
+  <%= link_to analyze_path, class: "btn btn-primary" do %>
+      <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter
+    <% end %>        
+<% end %>
+</div><!--end_#all-messages-->  
