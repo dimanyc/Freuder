@@ -47,14 +47,15 @@ RSpec.describe FiltersController, :type => :controller do
 	end
 
   describe "DELETE #destroy" do
-    
+
     before (:each) do 
-      @filter = create(:filter)
+      @filter = create(:filter, id: 1)
+      @user = create(:user, id: 1)
     end
 
     it 'deletes the filter' do 
       expect {
-        delete :destroy, user_id: 1, filter: attributes_for(:filter)
+        delete :destroy, user_id: 1, id: 1
       }.to change(Filter, :count).by(-1)
     end
     

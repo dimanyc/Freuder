@@ -25,11 +25,14 @@ class FiltersController < ApplicationController
   ### Destroy 
   def destroy 
     @filter = Filter.find(params[:id])
-
-    if @filter.destroy
-      flash[:notice] = "Filter removed"
-    else
-      flash[:alert] = "Problem removing #{@filter.name}"
+    respond_to do |format|
+      if @filter.destroy
+        format.html { redirect_to @user, notice: "Filter #{@filter.name} has been deleted" }
+        format.json { }
+        format.js { }
+      else
+        flash[:alert] = "Problem removing #{@filter.name}"
+      end
     end
 
   end
