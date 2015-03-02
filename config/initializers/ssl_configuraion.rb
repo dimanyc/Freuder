@@ -1,1 +1,1 @@
-ENV["SSL_CERT_FILE"] = 'C:\RailsInstaller\cacert.pem'
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
