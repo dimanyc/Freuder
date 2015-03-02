@@ -17,3 +17,6 @@
 
 # Ignore ENV varialbes 
 /.env
+
+# Ignore backup batch of migraitons
+/db/bu_03_02_15/*

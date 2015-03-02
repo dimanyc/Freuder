@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '4.1.6'
-#gem 'sqlite3'
 gem 'pg'
 gem 'sass-rails', '~> 4.0.3'
 gem 'uglifier', '>= 1.3.0'
@@ -13,6 +12,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
+gem 'twitter'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -27,8 +27,4 @@ group :test do
   gem 'ffaker'
   gem 'launchy'
   gem 'selenium-webdriver'
-end
-
-group :production do 
-  #gem 'pg'
 end

@@ -1,8 +1,12 @@
 class MessagesController < ApplicationController
-  before_action :set_columns_to_array, :authenticate
+  before_action :authenticate
   
   def new 
     @message = Message.new 
+  end
+
+  def update
+    
   end
 
 end
