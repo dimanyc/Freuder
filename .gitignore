@@ -22,4 +22,4 @@
 /db/bu_03_02_15/*
 
 # Ignore the local SSL cert fix
-/config/initializers/ssl_configuraion.rb
+/config/initializers/ssl_*
