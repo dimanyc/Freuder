@@ -1,10 +1,8 @@
-<% if @messages.count < 0 %>
-    <div class="well">Please <%=link_to 'load your Tweets',analyze_path %> to be able to filter through them</div>
-<% elsif @messages.count >= 1 && @filtered_messages == [] %>
-    <div class="well">Your "Filtered Messages" queue is currently empty. Please <%=link_to 'filter your current feed',analyze_path %> or adjust your tags</div>
-
-    
-<% else %>
+<% if @messages.count <= 0 %>
+    <div class="well">You haven't updated your message queue. Go to "All Message" and hit "Refresh"</div>
+<% elsif @filtered_messages.nil? %>
+    <div class="well">Your "Filtered Messages" queue is currently empty.</div>
+<% elsif @filtered_messages.count >= 1 %>
   <% @filtered_messages.each do |i| %>
   <div class="panel panel-default">
     <div class="panel-heading">

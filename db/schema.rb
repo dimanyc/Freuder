@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228003251) do
+ActiveRecord::Schema.define(version: 20150302171919) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "filters", force: true do |t|
     t.integer  "user_id"
@@ -27,10 +30,10 @@ ActiveRecord::Schema.define(version: 20150228003251) do
   create_table "messages", force: true do |t|
     t.text     "body"
     t.string   "author"
-    t.string   "hashtags"
     t.string   "author_image_url"
-    t.string   "mentions"
-    t.text     "slipped"
+    t.text     "hashtags",         default: [], array: true
+    t.text     "mentions",         default: [], array: true
+    t.text     "slipped",          default: [], array: true
     t.integer  "owner_id"
     t.string   "owner_type"
     t.integer  "processor_id"
@@ -39,13 +42,8 @@ ActiveRecord::Schema.define(version: 20150228003251) do
     t.datetime "updated_at"
   end
 
-  add_index "messages", ["owner_id", "owner_type"], name: "index_messages_on_owner_id_and_owner_type"
-  add_index "messages", ["processor_id", "processor_type"], name: "index_messages_on_processor_id_and_processor_type"
-
-  create_table "tests", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "messages", ["owner_id", "owner_type"], name: "index_messages_on_owner_id_and_owner_type", using: :btree
+  add_index "messages", ["processor_id", "processor_type"], name: "index_messages_on_processor_id_and_processor_type", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "username"

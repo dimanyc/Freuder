@@ -1,5 +1,5 @@
 <div id="all-messages">
-<% if @messages == [] %>
+<% if @messages.count == 0 %>
   <div class="well">You don't have any saved messages yet. If this is your first time here, please click on Refresh button below. </div>
 
   <%= link_to home_path, class: "btn btn-primary" do %>

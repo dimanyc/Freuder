@@ -32,9 +32,9 @@
     <!--Pane Nav Tabs-->
     <ul class="nav nav-tabs right-to-left">
 
-      <li class="active"><a href="#all-messages" data-toggle="tab"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>&nbsp; All Messages <span class="badge lightblue"><%=@messages.count%></span></a></li>
+      <li class="active"><a href="#all-messages" data-toggle="tab"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>&nbsp; All Messages <span class="badge lightblue"><%= @messages.count %></span></a></li>
 
-      <li><a href="#filtered-messages" data-toggle="tab"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp; Filtered Messages <span class="badge lightblue"><%=@filtered_messages.count%></span></a></li>
+      <li><a href="#filtered-messages" data-toggle="tab"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp; Filtered Messages <span class="badge lightblue"><%= @filtered_messages.count if @filtered_messages %></span></a></li>
 
       <li><a href="#new-tweet" data-toggle="tab"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>&nbsp; New Tweet</a></li>    
 
