@@ -4,10 +4,11 @@ Rails.application.routes.draw do
     resources :filters, only: [:new, :create, :destroy]
   end
 
-  resources :filters, only: [:destroy]
+  #resources :filters, only: [:destroy]
   resources :sessions, only: [:destroy], as: :logout
-  resources :messages, only: [:new, :create, :index, :destroy]
+  resources :messages, only: [:new, :index]
   get '/update-messages', to: 'messages#update', via: [:put, :patch], as: :update_messages
+  get '/empty-user-messages', to: 'messages#empty_the_user_message_queue', via: [:put, :patch], as: :empty_the_user_message_queue
 
   root 'home#index', as: 'home', layout: 'false'
   match 'auth/twitter/callback', to: 'sessions#create', via: [:get, :post]

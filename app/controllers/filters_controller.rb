@@ -11,9 +11,9 @@ class FiltersController < ApplicationController
 
     respond_to do |format|
       if @filter.save
-        flash[:notice] = 'User was successfully created.'
-        format.html { redirect_to @user }
+        flash[:notice] = "#{@filter.name} has been created"
         format.json { render json: @filter, status: :created, location: @filters }
+        format.html { redirect_to @user }        
         format.js {}
       else
         format.html { render :new, alert: "Problem adding your filter. Please try again or contact me directly: @dimanyc" }
@@ -26,6 +26,7 @@ class FiltersController < ApplicationController
   ### Destroy 
   def destroy 
     @filter = Filter.find(params[:id])
+
     respond_to do |format|
       if @filter.destroy
         flash[:notice] = "Filter #{@filter.name} has been deleted"
@@ -36,7 +37,6 @@ class FiltersController < ApplicationController
         format.html { }
       end
     end
-
   end
  
   private

@@ -1,26 +1,22 @@
 <div id="all-messages">
+  <% if @user.messages.empty? %>
+    <div class="well">
+      <p>Your Message Queue is empty. If this is your first time here, hit the Refresh button above to pull Tweets from the timeline</p>
+    </div><!--end_.well-->
+  <% else %>  
+    <% @user.messages.each do |message| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+      by <b><%=message.author%></b>
+        <div class="pull-right">
+        <%= image_tag(message.author_image_url, class: "author-pic img-circle") %>
+        </div>
 
-  <% @user.messages.each do |message| %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-    by <b><%=message.author%></b>
-      <div class="pull-right">
-      <%= image_tag(message.author_image_url, class: "author-pic img-circle") %>
-      </div>
-
-    </div><!--end_.panel-heading-->
-    <div class="panel-body">
-      <%=message.body%>
-    </div><!--end_panel-body-->
-  </div><!--end_.panel panel-default-->
-  <% end %>
-    
-  
-  <%= link_to update_messages_path, class: "btn btn-info" do %>
-      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh
-  <% end %> 
-  <%= link_to update_messages_path, class: "btn btn-primary" do %>
-      <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter
-  <% end %>        
-
+      </div><!--end_.panel-heading-->
+      <div class="panel-body">
+        <%=message.body%>
+      </div><!--end_panel-body-->
+    </div><!--end_.panel panel-default-->
+    <% end %>
+  <% end %>  
 </div><!--end_#all-messages-->   

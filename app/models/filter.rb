@@ -4,7 +4,7 @@ class Filter < ActiveRecord::Base
   belongs_to :user
   has_many :messages, as: :processor
  
-  ### Serialize to array:
+  ### Split to array:
   def split_to_array(string)
     string.split(',').map(&:strip)
   end  
