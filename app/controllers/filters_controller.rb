@@ -11,7 +11,8 @@ class FiltersController < ApplicationController
 
     respond_to do |format|
       if @filter.save
-        format.html { redirect_to @user, notice: "Filter #{@filter.name} has been created" }
+        flash[:notice] = 'User was successfully created.'
+        format.html { redirect_to @user }
         format.json { render json: @filter, status: :created, location: @filters }
         format.js {}
       else
@@ -27,11 +28,12 @@ class FiltersController < ApplicationController
     @filter = Filter.find(params[:id])
     respond_to do |format|
       if @filter.destroy
-        format.html { redirect_to @user, notice: "Filter #{@filter.name} has been deleted" }
+        flash[:notice] = "Filter #{@filter.name} has been deleted"
+        format.html { redirect_to @user }
         format.json { }
         format.js { }
       else
-        flash[:alert] = "Problem removing #{@filter.name}"
+        format.html { }
       end
     end
 

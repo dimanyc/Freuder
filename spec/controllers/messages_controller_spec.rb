@@ -15,16 +15,5 @@ RSpec.describe MessagesController, :type => :controller do
       end
 
   end 
-
-    # before (:each) do 
-    #   @filter = create(:filter, id: 1)
-    #   @user = create(:user, id: 1)
-    # end
-
-    # it 'deletes the filter' do 
-    #   expect {
-    #     delete :destroy, user_id: 1, id: 1
-    #   }.to change(Filter, :count).by(-1)
-    # end  
-
+  
 end

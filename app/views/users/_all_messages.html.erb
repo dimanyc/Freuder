@@ -1,14 +1,6 @@
 <div id="all-messages">
-<% if @messages.count == 0 %>
-  <div class="well">You don't have any saved messages yet. If this is your first time here, please click on Refresh button below. </div>
 
-  <%= link_to home_path, class: "btn btn-primary" do %>
-      <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh
-  <% end %> 
-
-<% else %>
-
-  <% @messages.each do |message| %>
+  <% @user.messages.each do |message| %>
   <div class="panel panel-default">
     <div class="panel-heading">
     by <b><%=message.author%></b>
@@ -24,11 +16,11 @@
   <% end %>
     
   
-  <%= link_to refresh_path, class: "btn btn-info" do %>
+  <%= link_to update_messages_path, class: "btn btn-info" do %>
       <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Refresh
   <% end %> 
-  <%= link_to analyze_path, class: "btn btn-primary" do %>
+  <%= link_to update_messages_path, class: "btn btn-primary" do %>
       <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter
-    <% end %>        
-<% end %>
-</div><!--end_#all-messages-->  
+  <% end %>        
+
+</div><!--end_#all-messages-->   
