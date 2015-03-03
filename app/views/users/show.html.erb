@@ -65,14 +65,14 @@
 
     <!--Filtered Messages-->
       <div class="tab-pane fade" id="filtered-messages">
-            <div class="panel-heading">
-        <b>Filtered Messages:</b>
-          <div class="pull-right">
-            <span class="badge green">
-            <%=link_to home_path do %> <span class="glyphicon glyphicon-filter" aria-hidden="true"></span> Filter Messages <% end %>
-            </span><!--end_.badge-->
-          
-          </div><!--end_pull-right-->
+        <div class="panel-heading">
+          <b>Filtered Messages:</b>
+            <div class="pull-right">
+              <span class="badge red">
+              <%= link_to empty_filter_message_queue_path do %> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear Filtered Messages <% end %>
+              </span><!--end_.badge-->
+            
+            </div><!--end_pull-right-->
         </div><!--end_.panel-heading-->
          
         

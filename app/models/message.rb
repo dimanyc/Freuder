@@ -21,8 +21,9 @@ class Message < ActiveRecord::Base
             @message_body = tweet.full_text
 
             if @slips.any? { |slip| @message_body.include?(slip) }
-                filter.messages << @message
+                filter.messages << @message unless filter.messages.include?(Message.find(@message.id))
                 @message.slipped << @slips
+                @message.save
             end
 
           end

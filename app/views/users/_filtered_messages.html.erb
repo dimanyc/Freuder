@@ -1,12 +1,12 @@
-<% if @messages.count <= 0 %>
+<% if @messages.count < 1 && @filtered_messages.count < 1 %>
     <div class="well">You haven't updated your message queue. Go to "All Message" and hit "Refresh"</div>
-<% elsif @filtered_messages.nil? %>
+<% elsif @filtered_messages.empty? %>
     <div class="well">Your "Filtered Messages" queue is currently empty.</div>
-<% elsif @filtered_messages.count >= 1 %>
+<% elsif @filtered_messages.count > 0 %>
   <% @filtered_messages.each do |i| %>
   <div class="panel panel-default">
     <div class="panel-heading">
-    by <b><%=i.author%></b> &nbsp;|&nbsp; slipped at:<b> "<%=i.slipped.join(" ")%>"</b>
+    by <b><%=i.author%></b> &nbsp;|&nbsp; slipped at:<b> "<%#=i.slipped.join(" ")%><%= i.slipped.join(" ") %>"</b>
       <div class="pull-right">
       <%= image_tag(i.author_image_url, class: "author-pic img-circle") %>
       </div>

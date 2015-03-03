@@ -41,6 +41,24 @@ class MessagesController < ApplicationController
     end
   end
 
+  def empty_filter_message_queue
+    #@filters = Filter.where(user_id: @user.id).try(:messages).update_all(processor_id: nil)
+    @filters = { |filter| filter.remove_filtered_messages(@user) }
+
+    respond_to do |format|
+
+      if @filters
+        flash.now[:notice] = 'Messages have been deleted'
+        format.html { redirect_to user_path(@user) }
+        format.json {} 
+      else
+        flash[:alert] = "Problem..."
+        redirect_to user_path(@user)
+      end
+
+    end  
+  end
+
   private
   def set_user
     @user = current_user

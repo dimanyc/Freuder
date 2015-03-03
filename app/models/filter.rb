@@ -7,6 +7,10 @@ class Filter < ActiveRecord::Base
   ### Split to array:
   def split_to_array(string)
     string.split(',').map(&:strip)
+  end
+
+  def self.remove_filtered_messages(user)
+    messages.where(user_id: user.id).try(:messages).update_all(processor_id: nil)
   end  
   
   ### Validations:
