@@ -6,11 +6,13 @@ class MessagesController < ApplicationController
   end
 
   def update
-    @messages = Message.refresh_tweets(@user)
+   ###### @messages = Message.refresh_tweets(@user)
+    @messages = Message.pull_tweets(@user)
+    @filters = Filter.analyze_tweets(@user)
 
     respond_to do |format|
 
-      if @messages
+      if @messages && @filters
         flash.now[:notice] = 'Successfully updated the message queue'
 
         #@messages.each evaluate_messages(@user, @messages, @user.filters)

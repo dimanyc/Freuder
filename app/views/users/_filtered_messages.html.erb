@@ -1,7 +1,7 @@
-<% if @messages.count < 1 && @filtered_messages.count < 1 %>
+<% if current_user.messages.count < 1 && current_user.filters.count < 1 %>
     <div class="well">You haven't updated your message queue. Go to "All Message" and hit "Refresh"</div>
-<% elsif @filtered_messages.empty? %>
-    <div class="well">Your "Filtered Messages" queue is currently empty.</div>
+<% elsif urrent_user.messages.count >= 1 && current_user.filters.count > 1 %>
+    <div class="well">Your "Filtered Messages" queue is currently empty. Try adding a filter first</div>
 <% elsif @filtered_messages.count > 0 %>
   <% @filtered_messages.each do |i| %>
   <div class="panel panel-default">
