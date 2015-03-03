@@ -5,7 +5,7 @@ class Message < ActiveRecord::Base
   belongs_to :processor, polymorphic: true
 
   ### Validations:
-  validates :body, presence: true, length: { within: 3...156, too_long: "body is too long", too_short: "body is too short" }
+  validates :body, presence: true, length: { within: 3...200, too_long: "body is too long", too_short: "body is too short" }
   validates :author, presence: true
 
   ### Class methods

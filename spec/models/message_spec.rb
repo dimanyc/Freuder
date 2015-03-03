@@ -21,14 +21,6 @@ RSpec.describe Message, :type => :model do
     expect(message).to_not be_valid
   end
 
-  # #### Uniquness: 
-  # it 'is not valid with a duplicate body' do
-  #   create(:message, body: "foobarrito")
-  #   duplicate_message = build(:message, body: "foobarrito")
-  #   duplicate_message.valid?
-  #   expect(duplicate_message.errors[:body]).to include ("has already been taken")
-  # end
-
   #### Columns to Array initiation
   it 'has Array data types in Slipped, Hashtags and Mentions columns' do 
     message = build(:message)
@@ -71,9 +63,9 @@ RSpec.describe Message, :type => :model do
     end
 
     #### Body length:
-    it 'is not valid with body length of < 3 or > 143 156 characters' do
+    it 'is not valid with body length of < 3 or > 200 characters' do
       message1 = build(:message, body: "fo")
-      message2 = build(:message, body: "#{@message.body}" + "somemorestupidcharacters") 
+      message2 = build(:message, body: "#{@message.body}" + "somemorestupidcharactersthatwillincreasethecharactercountbygodknowshowmuchandattheendwillmakethistestpasspassisaidnotfail") 
       message1.valid?
       expect(message1.errors[:body]).to include ("body is too short")
       message2.valid?

@@ -41,9 +41,12 @@ class MessagesController < ApplicationController
     end
   end
 
-  def empty_filter_message_queue
+  def empty_the_filter_message_queue
     #@filters = Filter.where(user_id: @user.id).try(:messages).update_all(processor_id: nil)
-    @filters = { |filter| filter.remove_filtered_messages(@user) }
+    #@filters = { |filter| filter.remove_filtered_messages(@user) }
+    @filters = @user.filters.each do |filter|
+      filter.remove_filtered_messages(@user)
+    end
 
     respond_to do |format|
 

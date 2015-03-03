@@ -9,8 +9,9 @@ class Filter < ActiveRecord::Base
     string.split(',').map(&:strip)
   end
 
-  def self.remove_filtered_messages(user)
-    messages.where(user_id: user.id).try(:messages).update_all(processor_id: nil)
+  def remove_filtered_messages(user)
+    #messages = user.messages
+    Filter.where(user_id: user.id).try(:messages).update_all(processor_id: nil) unless Filter.where(user_id: user.id).messages.nil?
   end  
   
   ### Validations:
