@@ -10,11 +10,11 @@ class Message < ActiveRecord::Base
 
   ### Class methods
 
-  def self.pull_tweets(owner)
+  def self.pull_tweets(user)
     tweets = @@twitter.home_timeline
     if tweets
       tweets.each do |tweet|
-        owner.messages.create!(body: tweet.full_text, author: tweet.user.screen_name, author_image_url: tweet.user.profile_image_uri.to_s, mentions: tweet.user_mentions.to_s, hashtags: tweet.hashtags.to_s)
+        user.messages.create!(body: tweet.full_text, author: tweet.user.screen_name, author_image_url: tweet.user.profile_image_uri.to_s, mentions: tweet.user_mentions.to_s, hashtags: tweet.hashtags.to_s)
       end
     end
   end
