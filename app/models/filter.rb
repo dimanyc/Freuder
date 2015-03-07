@@ -15,13 +15,14 @@ class Filter < ActiveRecord::Base
   end
 
   def analyze_tweets(user)
-   
-    user.messages.each do |message|
-      user.filters.each do |filter|
-        slips = filter.split_to_array(filter.slips)
-        if slips.any?{ |slip| message.body.include?(slip) }
 
-          filter.messages << message unless filter.messages.ids.include?(message.id)
+    user.filters.each do |filter|
+      user.messages.each do |message|
+        slips = filter.split_to_array(filter.slips)
+
+        if slips.all?{ |slip| message.body.include?(slip) } && filter.messages.exclude?(message)
+          puts slips
+          filter.messages << message
           filter.save
           message.slipped << slips 
           message.save

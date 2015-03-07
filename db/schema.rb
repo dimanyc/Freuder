@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306223101) do
+ActiveRecord::Schema.define(version: 20150307192356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20150306223101) do
     t.text     "body"
     t.string   "author"
     t.string   "author_image_url"
-    t.text     "hashtags",         array: true
-    t.text     "mentions",         array: true
-    t.text     "slipped",          array: true
+    t.text     "hashtags",         default: [], array: true
+    t.text     "mentions",         default: [], array: true
+    t.text     "slipped",          default: [], array: true
     t.datetime "created_at"
     t.datetime "updated_at"
   end
