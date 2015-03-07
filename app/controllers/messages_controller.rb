@@ -6,16 +6,14 @@ class MessagesController < ApplicationController
   end
 
   def update
-   ###### @messages = Message.refresh_tweets(@user)
     @messages = Message.pull_tweets(@user)
-    @filters = Filter.analyze_tweets(@user)
+    @filters = @user.filters.each { |filter| filter.analyze_tweets(@user) }
 
     respond_to do |format|
 
       if @messages && @filters
         flash.now[:notice] = 'Successfully updated the message queue'
 
-        #@messages.each evaluate_messages(@user, @messages, @user.filters)
         format.html { redirect_to user_path(@user) }
         format.json {}
       else
@@ -44,11 +42,8 @@ class MessagesController < ApplicationController
   end
 
   def empty_the_filter_message_queue
-    #@filters = Filter.where(user_id: @user.id).try(:messages).update_all(processor_id: nil)
-    #@filters = { |filter| filter.remove_filtered_messages(@user) }
-    @filters = @user.filters.each do |filter|
-      filter.remove_filtered_messages(@user)
-    end
+
+    @filters = @user.filters.each { |filter| filter.remove_filtered_messages(@user) }
 
     respond_to do |format|
 

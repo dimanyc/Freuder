@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 
   ### Active Relations:
   has_many :filters
-  has_many :messages, as: :owner
+  has_and_belongs_to_many :messages
+ #has_many :messages, as: :owner
 
   ### Validations: 
   validates :username, presence: true, uniqueness: true

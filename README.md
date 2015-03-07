@@ -9,7 +9,7 @@
  - `Message` model join table vs. polymorphic class decision
  - Non-generic controller actions specs
  - Non-generic model method specs
- - ** change user > messages and filter > messages to join tables** 
+ - **change user > messages and filter > messages to join tables** 
 
 ### Description:
 

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @image = @user.image_url.gsub!("_normal","")
     @messages = @user.messages.order(:created_at)
     @message = Message.new 
-    @filtered_messages = Filter.find_by(user_id: @user.id).try(:messages) 
+    @filtered_messages = Filter.where(user_id: @user.id).try(:messages) 
     @filters = @user.filters
     @filter = Filter.new
     
