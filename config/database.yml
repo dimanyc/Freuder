@@ -4,8 +4,8 @@ development:
   encoding: unicode
   pool: 5
   timeout: 5000
-  username: freuder_dev
-  password: 123456789
+  #username: freuder_dev
+  #password: 123456789
 
 test: 
   adapter : postgresql
@@ -13,8 +13,8 @@ test:
   encoding: unicode
   pool: 5
   timeout: 5000
-  username: freuder_dev
-  password: 123456789
+  #username: freuder_dev
+  #password: 123456789
 
 production:
   adapter: postgresql
