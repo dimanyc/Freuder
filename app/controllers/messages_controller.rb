@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :authenticate, :set_user
+  rescue_from ActiveRecord::RecordNotUnique, with: :my_rescue_method
   
   def new 
     @message = Message.new 
@@ -25,17 +26,19 @@ class MessagesController < ApplicationController
   end
 
   def empty_the_user_message_queue
-    @messages = Message.where(owner_id: @user.id).update_all(owner_id: nil)
+    @empty_user_messages = @user.messages.destroy_all
 
     respond_to do |format|
 
-      if @messages
+      if @empty_user_messages
         flash.now[:notice] = 'Messages have been deleted'
         format.html { redirect_to user_path(@user) }
         format.json {} 
+        format.js {} 
       else
         flash[:alert] = "Problem..."
         redirect_to user_path(@user)
+        format.json {render :new}
       end
 
     end
@@ -57,11 +60,15 @@ class MessagesController < ApplicationController
       end
 
     end  
+
   end
 
   private
+
   def set_user
     @user = current_user
   end
+
+
 
 end

@@ -1,20 +1,19 @@
-<% if @messages.count < 0 %>
-  <div class="well">Please <%=link_to 'load your Tweets',analyze_path %> to be able to filter through them</div>
-<% elsif @filtered_messages.nil? %>
-  <div class="well">Your "Filtered Messages" queue is currently empty. Try adding a filter first</div>
+<% if @filtered_messages.nil? %>
+  <div class="well">
+    Your "Filtered Messages" queue is currently empty. Try refreshing the message feed.
+  </div><!--end_.well-->
 <% else %>
   <% @filtered_messages.each do |i| %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-    by <b><%=i.author%></b> &nbsp;|&nbsp; slipped at:<b> "<%=i.slipped.join(" ")%>"</b>
-      <div class="pull-right">
-      <%= image_tag(i.author_image_url, class: "author-pic img-circle") %>
-      </div>
-
-    </div><!--end_.panel-heading-->
-    <div class="panel-body">
-      <%=i.body%>
-    </div><!--end_panel-body-->
-  </div><!--end_.panel panel-default-->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        by <b><%=i.author%></b> &nbsp;|&nbsp; slipped at:<b> "<%=i.slipped.join(" ")%>"</b>
+        <div class="pull-right">
+          <%= image_tag(i.author_image_url, class: "author-pic img-circle") %>
+        </div>
+      </div><!--end_.panel-heading-->
+      <div class="panel-body">
+        <%=i.body%>
+      </div><!--end_panel-body-->
+    </div><!--end_.panel panel-default-->
   <% end %>
 <% end %>
