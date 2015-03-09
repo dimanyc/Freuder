@@ -12,6 +12,7 @@ FactoryGirl.define do
     uid nil
   end
 
+  
 end
 
 
