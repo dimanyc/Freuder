@@ -30,7 +30,7 @@ RSpec.describe Message, :type => :model do
     end
 
   ### Associations:
-  context 'is polymophic and can' do 
+  context 'has a many-to-many association and can' do 
 
     before(:each) do 
       @message = build(:message)
@@ -93,14 +93,14 @@ RSpec.describe Message, :type => :model do
 
     it 'saved if it matches one of the Filters' do
       Message.pull_tweets(@user)
-      Filter.analyze_tweets(@user)
+      @filter.analyze_tweets(@user)
       expect(@filter.messages.count).to_not eq(0)
     end
 
     it 'will not save the same Tweet twice for the same Filter' do
       @message = @filter.messages.create(body: "I am a duplicate message body", author:"foobarrito")
       @user.messages.create(body: "I am a duplicate message body", author:"foobarrito")
-      Filter.analyze_tweets(@user)
+      @filter.analyze_tweets(@user)
       expect(@filter.messages.where(body:"I am a duplicate message body").count).to eq(1)
     end
 

@@ -34,21 +34,20 @@ RSpec.describe UsersController, :type => :controller do
 
       context "loads User's messages" do 
 
-        before(:each) do 
+        before(:each) do+
+          subject { @user }
           @messages = @user.messages
-          @message = create(:message, owner: @user)
+          @message = create(:message, user: @user)
+          #@user = create(:user, :messages => create(:message))
+          #@message = create(:message)
         end
 
         it 'and creates @messages instance variable' do 
           expect(@messages).to_not eq nil
         end
 
-        it "and puts each new message in @messages" do 
-          expect(@messages).to include @message
-        end
-
         it "and creates new @message as User's message" do 
-          expect(@message.owner_id).to eq @user.id
+          expect(@user.messages).to include @message
         end
 
       end

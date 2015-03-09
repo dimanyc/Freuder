@@ -22,15 +22,8 @@ class Filter < ActiveRecord::Base
         message_body = message.body_to_array(message)
 
         if slips.all? { |slip| message_body.include?(slip) } && filter.messages.all? { |filtered_message| filtered_message.tweet_id.exclude?message.tweet_id }
-          filter.messages << message
-          filter.message.append_to_slipped(slips)
+          filter.messages << message 
 
-          # message.slipped << slips
-          # message.save
-          # filter.messages.each {|message| message.append_to_slipped(slips.to_s)}
-          # slips.each { |slip| message.append_to_slipped(slip.to_s) }
-          # filter.messages.where(id: message.id).first.slipped << slips
-          # filter.messages.where(tweet_id: message.tweet_id).first.slipped << slips
         end
 
       end
