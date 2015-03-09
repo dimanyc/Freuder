@@ -1,5 +1,5 @@
 class ChangeUsersUidToString < ActiveRecord::Migration
   def change
-    change_column :uid, :users, :string
+    change_column :users, :uid, :string
   end
 end
