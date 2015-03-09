@@ -1,5 +1,5 @@
 class FiltersController < ApplicationController
-  before_action :set_user, only: [:create,:destroy]
+  before_action :set_user, only: [:create,:update,:destroy]
 
   ### Create
   def new
@@ -23,6 +23,21 @@ class FiltersController < ApplicationController
 
   end
 
+  ### Analze current tweets
+  def analyze_tweets
+    @user = current_user
+    @filters = @user.filters.each { |filter| filter.analyze_tweets(@user) }
+
+    if @filter 
+      flash[:notice] = "Filtered messages have been updated"
+      redirect_to user_path(@user)
+    else
+      redirect_to user_path(@user)
+      flash.now[:alert] = "Problem!"
+    end
+
+  end
+
   ### Destroy 
   def destroy 
     @filter = Filter.find(params[:id])
@@ -42,7 +57,7 @@ class FiltersController < ApplicationController
   private
 
   def set_user
-    @user = User.find(params[:user_id])
+    @user = User.find(params[:user_id]) 
   end
 
   def filter_params

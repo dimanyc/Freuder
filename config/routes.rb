@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:destroy], as: :logout
   resources :messages, only: [:new, :index]
   get '/update-messages', to: 'messages#update', via: [:put, :patch], as: :update_messages
+  get '/analyze-tweets', to: 'filters#analyze_tweets', as: :analyze_tweets
   get '/empty-user-messages', to: 'messages#empty_the_user_message_queue', via: [:put, :patch], as: :empty_the_user_message_queue
   get '/empty-filter-messages', to: 'messages#empty_the_filter_message_queue', via: [:put, :patch], as: :empty_filter_message_queue
 

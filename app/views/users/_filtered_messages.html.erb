@@ -3,16 +3,16 @@
     Your "Filtered Messages" queue is currently empty. Try refreshing the message feed.
   </div><!--end_.well-->
 <% else %>
-  <% @filtered_messages.each do |i| %>
+  <% @filtered_messages.each do |message| %>
     <div class="panel panel-default">
       <div class="panel-heading">
-        by <b><%=i.author%></b> &nbsp;|&nbsp; slipped at:<b> "<%=i.slipped.join(" ")%>"</b>
+        by <b><%= message.author%></b> &nbsp;|&nbsp; slipped at:<b> "<%= message.filters.first.slips %><%#= i.slipped.join(" ")%>"</b> &nbsp;|&nbsp; Tweet ID:<b> "<%= message.tweet_id %>"</b> &nbsp;|&nbsp; ID:<b> "<%= message.id %>"</b>
         <div class="pull-right">
-          <%= image_tag(i.author_image_url, class: "author-pic img-circle") %>
+          <%= image_tag(message.author_image_url, class: "author-pic img-circle") %>
         </div>
       </div><!--end_.panel-heading-->
       <div class="panel-body">
-        <%=i.body%>
+        <%= message.body%>
       </div><!--end_panel-body-->
     </div><!--end_.panel panel-default-->
   <% end %>

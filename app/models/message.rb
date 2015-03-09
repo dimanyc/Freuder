@@ -30,6 +30,13 @@ class Message < ActiveRecord::Base
     end
   end
 
+  def append_to_slipped(slip)
+    unless slipped.include?(slip)
+      slipped << slip
+      save
+    end
+  end
+
   def body_to_array(message)
     message.body.downcase.gsub(/[^a-z0-9\s]/i, '').split(" ")
   end
