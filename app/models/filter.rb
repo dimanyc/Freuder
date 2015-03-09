@@ -7,7 +7,8 @@ class Filter < ActiveRecord::Base
 
   ### Validations:
   validates :name, :slips, presence: true
-  validates_uniqueness_of :slips   
+  validates_uniqueness_of :slips
+  #validates_uniqueness_of :messages, scope: :tweet_id
  
   ### Split to array:
   def split_to_array(string)
@@ -18,37 +19,16 @@ class Filter < ActiveRecord::Base
     user.messages.each do |message|
       user.filters.each do |filter|
         slips = filter.split_to_array(filter.slips)
-        message_body = message.body_to_array(message)#message.body.downcase.gsub(/[^a-z0-9\s]/i, '').split(" ")
+        message_body = message.body_to_array(message)
 
-        if slips.all?{ |slip| message_body.include?(slip) } && filter.messages.exclude?(message)
+        if slips.all?{ |slip| message_body.include?(slip) } && filter.messages.all? { |filtered_message| filtered_message.tweet_id.exclude?message.tweet_id }
           filter.messages << message
-          message.slipped << slips
-        else
-          puts "something went wrong"
+          filter.messages.where(id: message.id).first.slipped << slips
+          #filter.messages.where(message).slipped << slips
         end
 
       end
     end
-
-    # user.filters.each do |filter|
-    #   user.messages.each do |message|
-
-    #     # if 1+1=2 
-    #     #   return true
-    #     # else
-    #     #   return false
-    #     # end
-    #     # slips = filter.split_to_array(filter.slips)
-    #     # if slips.all?{ |slip| message.body.include?(slip) } && filter.messages.exclude?(message)
-    #     #   filter.messages.create(message)
-    #     #   message.update_attributes(slips)
-    #     #   return true
-    #     # else
-    #     #   return false
-    #     # end
-
-    #   end
-    # end
 
   end
 

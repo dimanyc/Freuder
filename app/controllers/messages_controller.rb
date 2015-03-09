@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   before_action :authenticate, :set_user
-  rescue_from ActiveRecord::RecordNotUnique, with: :my_rescue_method
+  #rescue_from ActiveRecord::RecordNotUnique, with: :my_rescue_method
   
   def new 
     @message = Message.new 
@@ -10,19 +10,13 @@ class MessagesController < ApplicationController
     @messages = Message.pull_tweets(@user)
     @filters = @user.filters.each { |filter| filter.analyze_tweets(@user) }
 
-    respond_to do |format|
-
       if @messages && @filters
         flash.now[:notice] = 'Successfully updated the message queue'
-
-        format.html { redirect_to user_path(@user) }
-        format.json {}
       else
-        format.html {}
-        format.json {}
+        flash.now[:alert] = "Something went wrong"
       end
+      redirect_to user_path(@user)
 
-    end  
   end
 
   def empty_the_user_message_queue
