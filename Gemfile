@@ -13,6 +13,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
 gem 'twitter'
+gem 'certified'
 
 group :development, :test do
   gem 'rspec-rails'

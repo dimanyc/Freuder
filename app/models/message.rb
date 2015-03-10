@@ -12,8 +12,8 @@ class Message < ActiveRecord::Base
   ### Class methods
   def self.pull_tweets(user)
     
-    tweets = $twitter.user_timeline("#{user.username}")
-    # tweets = $twitter.home_timeline
+    # tweets = $twitter.user_timeline("#{user.username}")
+    tweets = $twitter.home_timeline
     
 
     if tweets #&& tweets.all? { |tweet| Message.validate_uniqueness_of(user,tweet) }
