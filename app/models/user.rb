@@ -3,7 +3,11 @@ class User < ActiveRecord::Base
   ### Active Relations:
   has_many :filters
   has_and_belongs_to_many :messages
- #has_many :messages, as: :owner
+  has_many :filter_messages, through: :filters, class_name: 'Message'
+  #has_many :filter_messages, through: :filters, class_name: 'Message'
+  #has_many :messages, through: :filters, source: :user
+  #scope :filtered_messages, lambda{ |message| where(message: self.filter.message) }
+ 
 
   ### Validations: 
   validates :username, presence: true, uniqueness: true

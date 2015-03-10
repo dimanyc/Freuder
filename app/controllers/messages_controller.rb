@@ -1,6 +1,5 @@
 class MessagesController < ApplicationController
   before_action :authenticate, :set_user
-  #rescue_from ActiveRecord::RecordNotUnique, with: :my_rescue_method
   
   def new 
     @message = Message.new 
@@ -15,6 +14,7 @@ class MessagesController < ApplicationController
       else
         flash.now[:alert] = "Something went wrong"
       end
+
       redirect_to user_path(@user)
 
   end
