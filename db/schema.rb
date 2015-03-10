@@ -55,11 +55,6 @@ ActiveRecord::Schema.define(version: 20150309232117) do
   add_index "messages_users", ["message_id", "user_id"], name: "index_messages_users_on_message_id_and_user_id", using: :btree
   add_index "messages_users", ["user_id", "message_id"], name: "index_messages_users_on_user_id_and_message_id", using: :btree
 
-  create_table "tests", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", force: true do |t|
     t.string   "username"
     t.string   "email"
