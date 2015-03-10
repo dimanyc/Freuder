@@ -2,13 +2,11 @@ class Filter < ActiveRecord::Base
   
   ### Active Relations:
   belongs_to :user
-  #has_many :messages, as: :processor
   has_and_belongs_to_many :messages
 
   ### Validations:
   validates :name, :slips, presence: true
   validates_uniqueness_of :slips
-  #validates_uniqueness_of :messages, scope: :tweet_id
  
   ### Split to array:
   def split_to_array(string)
@@ -23,7 +21,6 @@ class Filter < ActiveRecord::Base
 
         if slips.all? { |slip| message_body.include?(slip) } && filter.messages.all? { |filtered_message| filtered_message.tweet_id.exclude?message.tweet_id }
           filter.messages << message 
-
         end
 
       end
