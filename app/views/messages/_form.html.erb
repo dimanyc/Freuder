@@ -1,10 +1,9 @@
   <div class="panel panel-default">
     <div class="panel-body"> 
-      <%= form_for(@message) do |f| %>
+      <%= form_for ([@user, @message]) do |f| %>
       <% if @message.errors.any? %>
         <div id="error_explanation">
         <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
-
           <ul>
           <% @message.errors.full_messages.each do |message| %>
             <li><%= message %></li>
@@ -15,12 +14,8 @@
       
       <div class="form-group">
         <%= f.label :body,"Text:" %><br/>
-
-
-      <%= f.text_area :body, class: "form-control counted", placeholder: "Type in your message", rows:"4", style: "margin-bottom:10px;" %>    
-      <h6 class="pull-right" id="counter">320 characters remaining</h6>      
-
-      <%#= f.submit "Post New Tweet", class: "btn btn-info",action: "post_new_tweet"%>
+        <%= f.text_area :body, class: "form-control counted", placeholder: "Type in your message", rows:"4", style: "margin-bottom:10px;" %>    
+        <h6 class="pull-right" id="counter">320 characters remaining</h6>      
       <%= f.submit "post new tweet", id:"create-new-tag" %>
       </div><!--end_.form-group-->            
       <%end%>

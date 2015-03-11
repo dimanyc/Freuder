@@ -8,6 +8,10 @@ module OmniAuthTestHelper
         :info => {
           :nickname => "foobaritto",
           :image => "http://si0.twimg.com/sticky/default_profile_images/default_profile_2_normal.png"
+        },
+        :credentials => {
+          :token => "token",
+          :secret => "secret"
         }
       })
     end

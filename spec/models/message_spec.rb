@@ -87,7 +87,7 @@ RSpec.describe Message, :type => :model do
     end
 
     before(:example) do 
-      @user = create(:user, id: 999)
+      @user = create(:user, id: 999, oauth_token: "2981523107-fwusJLpEUQXuxcKU9NKKFJ7iqVzPRCPlE8dYrhm", oauth_secret: "jqkqsT2uc1pGwML8XduGNBmYboVWsdEoDkgBvAMPlGl1v")
       @filter = @user.filters.create(name: "foobarrito", slips: "to") #at least one out of 20 tweets will have the word "to" in it. 
     end
 

@@ -13,7 +13,7 @@ describe "OAuth authenticaion via GET '/auth/twitter/callback' works" do
   end
 
   it "should parse user id" do
-    expect(User.last.uid).to eq(1235456)
+    expect(User.last.uid).to eq("1235456")
   end
 
   it "should parse user's profile_image_url" do 

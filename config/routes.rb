@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :create] do 
     resources :filters, only: [:new, :create, :destroy]
+    resources :messages, only:[:create]
   end
 
   resources :sessions, only: [:destroy], as: :logout

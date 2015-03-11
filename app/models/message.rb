@@ -7,16 +7,14 @@ class Message < ActiveRecord::Base
   ### Validations:
   validates :body, presence: true, length: { within: 3...200, too_long: "body is too long", too_short: "body is too short" }
   validates :author, presence: true
-  validates_uniqueness_of :tweet_id
+  #validates_uniqueness_of :tweet_id
 
   ### Class methods
   def self.pull_tweets(user)
     
-    # tweets = $twitter.user_timeline("#{user.username}")
     tweets = user.twitter.home_timeline
-    
 
-    if tweets #&& tweets.all? { |tweet| Message.validate_uniqueness_of(user,tweet) }
+    if tweets 
       tweets.each { |tweet| user.messages.create(tweet_id: tweet.id, body: tweet.full_text, author: tweet.user.screen_name, author_image_url: tweet.user.profile_image_uri.to_s, mentions: tweet.user_mentions.to_s, hashtags: tweet.hashtags[0].to_s) if Message.validate_uniqueness_of(user,tweet) }
       return true
     else
@@ -32,13 +30,6 @@ class Message < ActiveRecord::Base
     end
   end
 
-  def append_to_slipped(slip)
-    unless slipped.include?(slip)
-      slipped << slip
-      save
-    end
-  end
-
   def body_to_array(message)
     message.body.downcase.gsub(/[^a-z0-9\s]/i, '').split(" ")
   end
@@ -47,7 +38,11 @@ class Message < ActiveRecord::Base
     user.messages.delete_all
   end
 
-  def tweets
+  def save_and_post_to_twitter(message,user)
+    @message = Message.create(body:message.body,author:user)
+    if @message
+      user.twitter.update(@message.body)
+    end
   end
 
 end

@@ -11,41 +11,26 @@ class User < ActiveRecord::Base
 
   ### Methods:
   #### OAuth Authentication: 
+
   def self.from_omniauth(auth)
-    user = where(provider: auth.provider, uid: auth.uid).first || create_from_omniauth(auth)
-    user.oauth_token = auth.credentials.token
-    user.oauth_secret = auth.credentials.secret
-    # $oauth_token = user.oauth_token
-    # $oauth_secret = user.oauth_secret 
-    user.save!
+    user = where(provider: auth.provider, uid: auth.uid).first_or_create
+    user.update(
+      oauth_token: auth.credentials.token,
+      oauth_secret: auth.credentials.secret,
+      username: auth.info.nickname,
+      image_url: auth.info.image
+    )
     user
   end
 
-
-
-  def self.create_from_omniauth(auth)
-    create! do |user|
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.username = auth.info.nickname
-      user.image_url = auth.info.image
-      user.save 
-    end
-  end
-
   def twitter
-      # $twitter ||= Twitter::Client.new(oauth_token: oauth_token, oauth_token_secret: oauth_secret, access_token: ENV['TWITTER_ACCESS_TOKEN'], access_token_secret: ENV['TWITTER_ACCESS_SECRET'] )
-      $twitter ||= Twitter::REST::Client.new(oauth_token: oauth_token, oauth_token_secret: oauth_secret, consumer_key: oauth_token , consumer_secret: oauth_secret, access_token: ENV['TWITTER_ACCESS_TOKEN'], access_token_secret: ENV['TWITTER_ACCESS_SECRET'] )
+      @twitter ||= Twitter::REST::Client.new do |config|
+        config.consumer_key        = ENV['TWITTER_API_KEY']
+        config.consumer_secret     = ENV['TWITTER_API_SECRET']
+        config.access_token        = oauth_token
+        config.access_token_secret = oauth_secret
+      end 
   end
-
-
-  # $twitter = Twitter::REST::Client.new do |config, user|
-  #   config.consumer_key        = user.oauth_token
-  #   config.consumer_secret     = user.oauth_secret
-  #   config.access_token        = ENV['TWITTER_ACCESS_TOKEN']
-  #   config.access_token_secret = ENV['TWITTER_ACCESS_SECRET']
-  # end 
- 
 
 end
 

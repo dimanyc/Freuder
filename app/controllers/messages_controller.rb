@@ -2,22 +2,23 @@ class MessagesController < ApplicationController
   before_action :authenticate, :set_user
   
   def new 
-    @message = Message.new 
+    @message = Message.new
   end
 
   def create
-    @message = Message.new(message_params)
-    if @message.save
+    @message = @user.messages.new(message_params)
+    @message.author = @user 
+
+    if @message.save!
       @user.twitter.update(@message.body)
-      current_user.messages << @message 
       flash[:notice] = "Message Sent"
     elsif @message.body.empty?
       flash[:alert] = "Cannot send an empty message"
     else
       flash[:alert] = "Problem sending your message"
     end
-
     redirect_to user_path(current_user)
+  
   end
 
   def update
@@ -79,9 +80,7 @@ class MessagesController < ApplicationController
   end
 
   def message_params
-    params.require(:message).permit(:body,:author)
+    params.require(:message).permit(:body,:author, user_parameters:[:username])
   end
-
-
 
 end
