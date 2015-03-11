@@ -5,6 +5,21 @@ class MessagesController < ApplicationController
     @message = Message.new 
   end
 
+  def create
+    @message = Message.new(message_params)
+    if @message.save
+      @user.twitter.update(@message.body)
+      current_user.messages << @message 
+      flash[:notice] = "Message Sent"
+    elsif @message.body.empty?
+      flash[:alert] = "Cannot send an empty message"
+    else
+      flash[:alert] = "Problem sending your message"
+    end
+
+    redirect_to user_path(current_user)
+  end
+
   def update
     @messages = Message.pull_tweets(@user)
     @filters = @user.filters.each { |filter| filter.analyze_tweets(@user) }
@@ -61,6 +76,10 @@ class MessagesController < ApplicationController
 
   def set_user
     @user = current_user
+  end
+
+  def message_params
+    params.require(:message).permit(:body,:author)
   end
 
 

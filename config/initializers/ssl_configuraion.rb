@@ -1,1 +1,1 @@
-#OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE <#= my local machine switch 
+#OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE #<= my local machine switch 
