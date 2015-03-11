@@ -23,3 +23,6 @@
 
 # Ignore the local SSL cert fix
 /config/initializers/ssl_*
+
+# My backups 
+/*.txt

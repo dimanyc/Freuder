@@ -28,6 +28,7 @@ end3
 
 
 
+Twitter.rb:
 # $twitter = Twitter::REST::Client.new do |config|
 #   config.consumer_key        = ENV['TWITTER_API_KEY']
 #   config.consumer_secret     = ENV['TWITTER_API_SECRET']
@@ -35,6 +36,17 @@ end3
 #   config.access_token_secret = ENV['TWITTER_ACCESS_SECRET']
 # end
 
+Omniauth.rb:
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :twitter, ENV['TWITTER_API_KEY'], ENV['TWITTER_API_SECRET']
+    {
+      :secure_image_url => 'true',
+      :image_size => 'original',
+      :authorize_params => {
+      :force_login => 'true',
+      }
+    }
+end
 
 
 

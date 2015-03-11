@@ -15,10 +15,13 @@ class User < ActiveRecord::Base
     user = where(provider: auth.provider, uid: auth.uid).first || create_from_omniauth(auth)
     user.oauth_token = auth.credentials.token
     user.oauth_secret = auth.credentials.secret
+    # $oauth_token = user.oauth_token
+    # $oauth_secret = user.oauth_secret 
     user.save!
     user
-
   end
+
+
 
   def self.create_from_omniauth(auth)
     create! do |user|
@@ -32,8 +35,9 @@ class User < ActiveRecord::Base
 
   def twitter
       # $twitter ||= Twitter::Client.new(oauth_token: oauth_token, oauth_token_secret: oauth_secret, access_token: ENV['TWITTER_ACCESS_TOKEN'], access_token_secret: ENV['TWITTER_ACCESS_SECRET'] )
-      $twitter ||= Twitter::REST::Client.new(oauth_token: oauth_token, oauth_token_secret: oauth_secret, access_token: ENV['TWITTER_ACCESS_TOKEN'], access_token_secret: ENV['TWITTER_ACCESS_SECRET'] )
+      $twitter ||= Twitter::REST::Client.new(oauth_token: oauth_token, oauth_token_secret: oauth_secret, consumer_key: oauth_token , consumer_secret: oauth_secret, access_token: ENV['TWITTER_ACCESS_TOKEN'], access_token_secret: ENV['TWITTER_ACCESS_SECRET'] )
   end
+
 
   # $twitter = Twitter::REST::Client.new do |config, user|
   #   config.consumer_key        = user.oauth_token
