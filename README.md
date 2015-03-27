@@ -3,7 +3,7 @@
 
 ### Description:
 
-Freuder is an add-on for Twitter, which uses API calls to pull user's Twitter feed. The app allows finding and saving tweets that match a certain specified criteria. For example, if I am a PR Firm, looking to do an outreach to publications within the automotive industry, I can create a filter for terms “car”, “auto” and “article”, and find and save tweets that feature this combination of terms (in any order).
+Freuder is an add-on for Twitter, which uses API calls to pull user's Twitter feed. The app allows finding and saving tweets that match a certain specified criteria. For example, if I am a PR pro, looking to do an outreach to publications within the automotive industry, I can create a filter for terms “car”, “auto” and “article”, and find and save tweets that feature this combination of terms (in any order).
 
 ### How to use:
 1. Sign-in with your twitter account
@@ -25,3 +25,4 @@ Freuder is an add-on for Twitter, which uses API calls to pull user's Twitter fe
  - ~~Non-generic model method specs~~
  - ~~change user > messages and filter > messages to join tables~~
  - features 
+ - regirster for `streaming`
